@@ -1,38 +1,186 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif; /* modern font */
+  background: linear-gradient(135deg, #0f0f0f, #2c2c2c);
+  color: white;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
+}
+
+.game {
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#game-title {
+  margin-bottom: 30px;
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffd700; /* gold effect */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8),
+               0 0 20px rgba(255, 215, 0, 0.6);
+}
+.btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #28a745, #218838);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.start-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #34d058, #218838);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.reset-btn {
+  background: linear-gradient(135deg, #dc3545, #b21f2d);
+  color: white;
 }
+
+.reset-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #e74c3c, #b21f2d);
+}
+
+.game-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+/* Board styling */
+.board {
+  display: grid;
+  grid-template-columns: repeat(6, 70px);
+  grid-template-rows: repeat(6, 70px);
+  gap: 2px;
+  background: #111;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7), inset 0 0 15px rgba(255,255,255,0.1);
+}
+
+.cell {
+  width: 70px;
+  height: 70px;
+  background: #f5f5f5;
+  border: 1px solid #999;
+  position: relative;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.cell.path:hover {
+  background: #e6e6e6;
+}
+
+.cell.start {
+  background: #d4af37; /* gold start */
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.cell.empty {
+  background: #1a1a1a;
+  border: none;
+}
+
+/* Sidebar (Scoreboard + Dice) */
+.status {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;     
+  gap: 50px;
+}
+
+/* Scoreboard */
+.scoreboard {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 20px;
+  border-radius: 16px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+}
+
+.scoreboard h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #00ffea;
+  text-shadow: 0 0 10px rgba(0,255,234,0.7);
+}
+
+.score-card {
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+  color: white;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  box-shadow: inset 0 0 6px rgba(255,255,255,0.1);
+  transition: transform 0.2s ease;
+}
+/* Buttons */
+.controls {
+  margin-bottom: 20px;
+}
+
+
+/* Dice */
+.dice-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #141414, #2d2d2d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  transition: all 0.3s ease;
+}
+
+.dice-box:hover {
+  transform: scale(1.1) ;
+}
+
+.dice-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* Tokens */
+.token {
+  position: absolute;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+/* Winner banner */
+.winner-banner {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255,215,0,0.9);
+}
+
+
